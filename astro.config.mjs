@@ -17,5 +17,7 @@ export default defineConfig({
       theme: 'github-dark',
       wrap: true
     },
-  }
+  },
+  // Add configuration for content directory
+  contentDir: './content'
 });
