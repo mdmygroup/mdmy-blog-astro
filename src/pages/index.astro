@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+// Get all blog posts that are not drafts
+const posts = await getCollection('blog', ({ data }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Sort by publication date (newest first)
+const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Get the 6 most recent posts for the homepage
+const recentPosts = sortedPosts.slice(0, 6);
+---
+
+<BaseLayout 
+  title="MDMY Blog - Latest Articles and Insights" 
+  description="Discover our latest articles, tutorials, and insights on our blog."
+>
+  <section class="py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Welcome to MDMY Blog</h1>
+      <p class="text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto">
+        Discover our latest articles, insights, and industry updates.
+      </p>
+    </div>
+  
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {recentPosts.map(post => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          url={`/blog/${post.slug}/`}
+          heroImage={post.data.heroImage}
+          alt={post.data.alt}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+    
+    <div class="mt-12 text-center">
+      <a
+        href="/blog"
+        class="px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors inline-flex items-center"
+      >
+        View All Posts
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

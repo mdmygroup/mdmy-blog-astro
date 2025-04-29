@@ -1,0 +1,75 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, alt, tags } = post.data;
+
+// Format date
+const formattedPubDate = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(pubDate);
+
+const formattedUpdatedDate = updatedDate ? new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}).format(updatedDate) : null;
+---
+
+<BaseLayout title={title} description={description} image={heroImage} type="article">
+  <article class="max-w-3xl mx-auto blog-post">
+    <div class="mb-8">
+      {tags && tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mb-4">
+          {tags.map((tag) => (
+            <a
+              href={`/tags/${tag}`}
+              class="text-sm bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              #{tag}
+            </a>
+          ))}
+        </div>
+      )}
+      
+      <h1 class="text-3xl md:text-4xl font-bold mb-2">{title}</h1>
+      
+      <div class="text-gray-600 dark:text-gray-400 mb-6 flex items-center">
+        <time datetime={pubDate.toISOString()}>Published {formattedPubDate}</time>
+        
+        {updatedDate && (
+          <span class="mx-2">•</span>
+          <time datetime={updatedDate.toISOString()}>Updated {formattedUpdatedDate}</time>
+        )}
+      </div>
+
+      {heroImage && (
+        <img 
+          src={heroImage} 
+          alt={alt || title} 
+          class="w-full h-auto rounded-lg shadow-md mb-8"
+        />
+      )}
+    </div>
+    
+    <div class="prose prose-lg dark:prose-invert max-w-none">
+      <slot />
+    </div>
+    
+    <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
+      <a href="/blog" class="inline-flex items-center text-primary hover:underline">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to all posts
+      </a>
+    </div>
+  </article>
+</BaseLayout>
