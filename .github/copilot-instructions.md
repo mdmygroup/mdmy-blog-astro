@@ -1,0 +1,2 @@
+You are tasked with creating a complete, ready-to-use Astro-based blog repository.
+The blog must be Markdown-first (i.e., blog posts and pages are written in .md files), professionally structured, optimized for SEO, performance, and ease of scaling.
