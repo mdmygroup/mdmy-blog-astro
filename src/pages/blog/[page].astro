@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths({ paginate }) {
+  // Get all blog posts
+  const posts = await getCollection('blog', ({ data }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+
+  // Sort by publication date (newest first)
+  const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+  // Generate pages with 9 posts per page
+  return paginate(sortedPosts, { pageSize: 9 });
+}
+
+const { page } = Astro.props;
+const { currentPage, data: paginatedPosts, lastPage } = page;
+---
+
+<BaseLayout
+  title={`Blog - Page ${currentPage} | MDMY Blog`}
+  description={`Browse our articles, tutorials, and insights - Page ${currentPage} of ${lastPage}`}
+>
+  <section class="max-w-6xl mx-auto py-8">
+    <h1 class="text-3xl md:text-4xl font-bold mb-8">All Blog Posts</h1>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {paginatedPosts.map(post => (
+        <PostCard
+          title={post.data.title}
+          description={post.data.description}
+          pubDate={post.data.pubDate}
+          url={`/blog/${post.slug}/`}
+          heroImage={post.data.heroImage}
+          alt={post.data.alt}
+          tags={post.data.tags}
+        />
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <div class="flex justify-center items-center space-x-2 mt-12">
+      <a
+        href={currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`}
+        class={`px-4 py-2 border rounded ${
+          currentPage === 1 
+            ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+            : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+        }`}
+        aria-disabled={currentPage === 1}
+      >
+        Previous
+      </a>
+      
+      {currentPage > 2 && (
+        <a href="/blog" class="px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-800">
+          1
+        </a>
+      )}
+      
+      {currentPage > 3 && <span class="px-2">...</span>}
+      
+      {currentPage > 1 && (
+        <a 
+          href={currentPage === 2 ? '/blog' : `/blog/${currentPage - 1}`}
+          class="px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          {currentPage - 1}
+        </a>
+      )}
+      
+      <a 
+        href={`/blog/${currentPage}`}
+        class="px-4 py-2 border rounded bg-primary text-white"
+        aria-current="page"
+      >
+        {currentPage}
+      </a>
+      
+      {currentPage < lastPage && (
+        <a 
+          href={`/blog/${currentPage + 1}`}
+          class="px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          {currentPage + 1}
+        </a>
+      )}
+      
+      {currentPage < lastPage - 2 && <span class="px-2">...</span>}
+      
+      {currentPage < lastPage - 1 && (
+        <a 
+          href={`/blog/${lastPage}`}
+          class="px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+        >
+          {lastPage}
+        </a>
+      )}
+      
+      <a
+        href={`/blog/${currentPage + 1}`}
+        class={`px-4 py-2 border rounded ${
+          currentPage === lastPage
+            ? 'bg-gray-200 text-gray-500 cursor-not-allowed'
+            : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+        }`}
+        aria-disabled={currentPage === lastPage}
+      >
+        Next
+      </a>
+    </div>
+  </section>
+</BaseLayout>

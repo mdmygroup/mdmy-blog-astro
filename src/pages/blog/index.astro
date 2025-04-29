@@ -3,10 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostCard from '../../components/PostCard.astro';
 import { getCollection } from 'astro:content';
 
-// Number of posts per page
-const POSTS_PER_PAGE = 9;
-
-// Get all blog posts that aren't drafts in production
+// Get all blog posts
 const posts = await getCollection('blog', ({ data }) => {
   return import.meta.env.PROD ? !data.draft : true;
 });
@@ -14,33 +11,20 @@ const posts = await getCollection('blog', ({ data }) => {
 // Sort by publication date (newest first)
 const sortedPosts = [...posts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// Get pagination data from query params
-const currentPage = parseInt(Astro.url.searchParams.get('page') || '1');
+// Pagination configuration
+const POSTS_PER_PAGE = 9;
+const currentPage = 1;
 const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
-
-// Get posts for current page
-const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
-const endIndex = startIndex + POSTS_PER_PAGE;
-const paginatedPosts = sortedPosts.slice(startIndex, endIndex);
-
-// Helper function to generate pagination URLs
-const generatePaginationUrl = (pageNum) => {
-  return pageNum === 1 ? '/blog' : `/blog?page=${pageNum}`;
-};
+const paginatedPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
 ---
 
-<BaseLayout 
-  title="Blog - All Articles" 
-  description="Browse all our articles, tutorials, and insights on topics that matter to you."
+<BaseLayout
+  title="Blog | MDMY Blog"
+  description="Browse all our articles, tutorials, and insights on technology, design, and digital innovation."
 >
-  <section class="py-8">
-    <div class="mb-10">
-      <h1 class="text-3xl md:text-4xl font-bold mb-4">All Blog Posts</h1>
-      <p class="text-gray-700 dark:text-gray-300">
-        Browse through our collection of articles and insights.
-      </p>
-    </div>
-    
+  <section class="max-w-6xl mx-auto py-8">
+    <h1 class="text-3xl md:text-4xl font-bold mb-8">All Blog Posts</h1>
+
     <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {paginatedPosts.map(post => (
         <PostCard
@@ -54,69 +38,30 @@ const generatePaginationUrl = (pageNum) => {
         />
       ))}
     </div>
-    
-    {/* Pagination Controls */}
+
+    <!-- Pagination -->
     {totalPages > 1 && (
-      <nav class="mt-12 flex justify-center" aria-label="Pagination">
-        <ul class="flex items-center space-x-2">
-          {/* Previous Page Button */}
-          <li>
-            {currentPage > 1 ? (
-              <a 
-                href={generatePaginationUrl(currentPage - 1)}
-                class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Previous page"
-              >
-                &larr;
-              </a>
-            ) : (
-              <span 
-                class="px-3 py-2 rounded border border-gray-200 dark:border-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                aria-disabled="true"
-              >
-                &larr;
-              </span>
-            )}
-          </li>
-
-          {/* Page Number Buttons */}
-          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
-            <li>
-              <a 
-                href={generatePaginationUrl(pageNum)}
-                class={`px-4 py-2 rounded ${pageNum === currentPage ? 
-                  'bg-primary text-white' : 
-                  'border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800'
-                }`}
-                aria-label={`Page ${pageNum}`}
-                aria-current={pageNum === currentPage ? 'page' : undefined}
-              >
-                {pageNum}
-              </a>
-            </li>
-          ))}
-
-          {/* Next Page Button */}
-          <li>
-            {currentPage < totalPages ? (
-              <a 
-                href={generatePaginationUrl(currentPage + 1)}
-                class="px-3 py-2 rounded border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Next page"
-              >
-                &rarr;
-              </a>
-            ) : (
-              <span 
-                class="px-3 py-2 rounded border border-gray-200 dark:border-gray-800 text-gray-400 dark:text-gray-600 cursor-not-allowed"
-                aria-disabled="true"
-              >
-                &rarr;
-              </span>
-            )}
-          </li>
-        </ul>
-      </nav>
+      <div class="flex justify-center items-center space-x-2 mt-12">
+        <a
+          href={`/blog`}
+          class={`px-4 py-2 border rounded ${
+            currentPage === 1 
+              ? 'bg-gray-200 text-gray-500 cursor-not-allowed' 
+              : 'hover:bg-gray-100 dark:hover:bg-gray-800'
+          }`}
+          aria-disabled={currentPage === 1}
+        >
+          1
+        </a>
+        {Array.from({ length: totalPages - 1 }, (_, i) => (
+          <a
+            href={`/blog${i + 2 > 1 ? `/${i + 2}` : ''}`}
+            class="px-4 py-2 border rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+          >
+            {i + 2}
+          </a>
+        ))}
+      </div>
     )}
   </section>
 </BaseLayout>
