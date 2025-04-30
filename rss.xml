@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>MDMY Blog</title><description>Articles, tutorials, and insights on technology, design, and digital innovation.</description><link>https://yourdomain.com/</link><language>en-us</language><item><title>Getting Started with Astro: The Modern Static Site Generator</title><link>https://yourdomain.com/blog/first-post/</link><guid isPermaLink="true">https://yourdomain.com/blog/first-post/</guid><description>Learn how to build fast, optimized websites with Astro, a modern static site generator that delivers lightning-fast performance with a developer-friendly experience.</description><pubDate>Tue, 15 Apr 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Getting Started with Astro: The Modern Static Site Generator&lt;/h1&gt;
+&lt;p&gt;Astro has rapidly gained popularity among developers as a modern solution for building lightning-fast websites. In this post, we&apos;ll explore what makes Astro special and how to get started with your first Astro project.&lt;/p&gt;
+&lt;h2&gt;What is Astro?&lt;/h2&gt;
+&lt;p&gt;Astro is a modern static site generator that allows you to build faster websites with less client-side JavaScript. It features:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Island Architecture&lt;/strong&gt;: Load only the JavaScript you need&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple Framework Support&lt;/strong&gt;: Use React, Vue, Svelte, or plain HTML in the same project&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markdown Support&lt;/strong&gt;: First-class support for content-driven websites&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Seamless Integrations&lt;/strong&gt;: Easy to add features like image optimization and RSS feeds&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Setting Up Your First Astro Project&lt;/h2&gt;
+&lt;p&gt;Getting started with Astro is straightforward:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Create a new project with npm
+npm create astro@latest my-astro-site
+
+# Navigate to the new project
+cd my-astro-site
+
+# Start the development server
+npm run dev
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Understanding Astro Components&lt;/h2&gt;
+&lt;p&gt;Astro components use a .astro file extension and feature a unique template syntax:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;---
+// Your component&apos;s JavaScript or TypeScript code goes here
+const greeting = &quot;Hello, Astro!&quot;;
+---
+
+&amp;lt;!-- Your HTML template goes here --&amp;gt;
+&amp;lt;h1&amp;gt;{greeting}&amp;lt;/h1&amp;gt;
+
+&amp;lt;style&amp;gt;
+  /* Component-scoped CSS goes here */
+  h1 {
+    color: purple;
+  }
+&amp;lt;/style&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Why Choose Astro?&lt;/h2&gt;
+&lt;h3&gt;1. Performance-First&lt;/h3&gt;
+&lt;p&gt;Astro generates static HTML at build time, resulting in incredibly fast page loads. JavaScript is only shipped to the browser when necessary, meaning many pages can be completely static.&lt;/p&gt;
+&lt;h3&gt;2. Framework-Agnostic&lt;/h3&gt;
+&lt;p&gt;Unlike other tools that lock you into a specific framework, Astro allows you to use components from React, Vue, Svelte, and more—all in the same project.&lt;/p&gt;
+&lt;h3&gt;3. Content-Focused&lt;/h3&gt;
+&lt;p&gt;With built-in support for Markdown, Astro is perfect for content-heavy websites like blogs, documentation sites, and portfolios.&lt;/p&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Astro represents a modern approach to building websites that prioritizes performance without sacrificing developer experience. If you&apos;re looking for a tool to build content-focused websites with optimal performance, Astro deserves your attention.&lt;/p&gt;
+&lt;p&gt;In our next post, we&apos;ll dive deeper into Astro&apos;s content collections and how they make managing blog posts and other content a breeze.&lt;/p&gt;
+</content:encoded></item><item><title>Optimizing Performance with Astro Content Collections</title><link>https://yourdomain.com/blog/second-post/</link><guid isPermaLink="true">https://yourdomain.com/blog/second-post/</guid><description>Discover how Astro&apos;s content collections feature makes managing blog posts and other content easier while maintaining blazing-fast performance.</description><pubDate>Mon, 28 Apr 2025 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;Optimizing Performance with Astro Content Collections&lt;/h1&gt;
+&lt;p&gt;One of Astro&apos;s most powerful features is its content collections API, which provides a type-safe way to organize and manage your Markdown content. In this post, we&apos;ll explore how to leverage content collections for a better developer experience and optimal site performance.&lt;/p&gt;
+&lt;h2&gt;What are Content Collections?&lt;/h2&gt;
+&lt;p&gt;Content collections are Astro&apos;s solution for organizing and validating your content. They provide:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Type Safety&lt;/strong&gt;: Define schemas for your content with Zod&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic Validation&lt;/strong&gt;: Catch errors before they reach production&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Improved Developer Experience&lt;/strong&gt;: Better autocomplete and type checking&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficient Content Querying&lt;/strong&gt;: Powerful APIs for filtering and sorting content&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Setting Up Content Collections&lt;/h2&gt;
+&lt;p&gt;To start using content collections, you&apos;ll need to create a &lt;code&gt;content&lt;/code&gt; directory in your project and a &lt;code&gt;config.ts&lt;/code&gt; file to define your collections:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// src/content/config.ts
+import { defineCollection, z } from &apos;astro:content&apos;;
+
+const blogCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    updatedDate: z.date().optional(),
+    heroImage: z.string().optional(),
+    tags: z.array(z.string()).default([&quot;uncategorized&quot;]),
+  }),
+});
+
+export const collections = {
+  &apos;blog&apos;: blogCollection,
+};
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Working with Content Collections&lt;/h2&gt;
+&lt;p&gt;Once your collections are defined, you can query them throughout your site:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;import { getCollection } from &apos;astro:content&apos;;
+
+// Get all blog posts
+const allPosts = await getCollection(&apos;blog&apos;);
+
+// Filter posts
+const featuredPosts = await getCollection(&apos;blog&apos;, ({ data }) =&amp;gt; {
+  return data.tags.includes(&apos;featured&apos;);
+});
+
+// Sort posts by date
+const sortedPosts = [...allPosts].sort(
+  (a, b) =&amp;gt; b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Dynamic Routes with Content Collections&lt;/h2&gt;
+&lt;p&gt;Content collections shine when creating dynamic routes for your content:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// src/pages/blog/[...slug].astro
+export async function getStaticPaths() {
+  const blogEntries = await getCollection(&apos;blog&apos;);
+  
+  return blogEntries.map(entry =&amp;gt; ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2&gt;Performance Benefits&lt;/h2&gt;
+&lt;p&gt;Content collections aren&apos;t just about developer experience—they also contribute to performance optimization:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Build-time Processing&lt;/strong&gt;: Content is processed at build time, not runtime&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficient Data Loading&lt;/strong&gt;: Only load the data you need for each page&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Optimized Asset Handling&lt;/strong&gt;: Better management of linked assets like images&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Type Safety&lt;/strong&gt;: Fewer runtime errors means more reliable applications&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;Astro&apos;s content collections feature represents a major step forward in managing content for static and dynamic websites. By providing a structured, type-safe way to organize your Markdown files, it bridges the gap between traditional content management systems and modern front-end development.&lt;/p&gt;
+&lt;p&gt;Whether you&apos;re building a personal blog or a documentation site with hundreds of pages, content collections make the process more efficient and less error-prone.&lt;/p&gt;
+</content:encoded></item></channel></rss>

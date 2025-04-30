@@ -1,0 +1,65 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v3.6.5"><link rel="icon" type="image/svg+xml" href="/favicon.ico"><!-- Basic Meta Tags --><title>Getting Started with Astro: The Modern Static Site Generator</title><meta name="title" content="Getting Started with Astro: The Modern Static Site Generator"><meta name="description" content="Learn how to build fast, optimized websites with Astro, a modern static site generator that delivers lightning-fast performance with a developer-friendly experience."><link rel="canonical" href="https://yourdomain.com/blog/first-post/"><!-- Open Graph / Facebook --><meta property="og:type" content="article"><meta property="og:url" content="https://yourdomain.com/blog/first-post/"><meta property="og:title" content="Getting Started with Astro: The Modern Static Site Generator"><meta property="og:description" content="Learn how to build fast, optimized websites with Astro, a modern static site generator that delivers lightning-fast performance with a developer-friendly experience."><meta property="og:image" content="https://yourdomain.com/images/blog/astro-intro.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://yourdomain.com/blog/first-post/"><meta property="twitter:title" content="Getting Started with Astro: The Modern Static Site Generator"><meta property="twitter:description" content="Learn how to build fast, optimized websites with Astro, a modern static site generator that delivers lightning-fast performance with a developer-friendly experience."><meta property="twitter:image" content="https://yourdomain.com/images/blog/astro-intro.jpg"><!-- Additional Meta Tags for SEO --><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="index, follow"><meta name="googlebot" content="index, follow"><meta name="theme-color" content="#4f46e5"><link rel="stylesheet" href="/_astro/about.1e9d91d9.css" />
+<link rel="stylesheet" href="/_astro/_slug_.75edccde.css" /><script type="module">localStorage.getItem("theme")==="dark"||!localStorage.getItem("theme")&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark");document.addEventListener("DOMContentLoaded",()=>{const t=document.getElementById("theme-toggle"),e=localStorage.getItem("theme"),a=window.matchMedia("(prefers-color-scheme: dark)").matches;(e==="dark"||!e&&a)&&document.documentElement.classList.add("dark"),t?.addEventListener("click",()=>{const d=document.documentElement.classList.toggle("dark");localStorage.setItem("theme",d?"dark":"light")})});
+</script></head> <body class="min-h-screen flex flex-col"> <header class="border-b border-gray-200 dark:border-gray-700"> <div class="container mx-auto px-4 py-6 flex justify-between items-center"> <a href="/" class="text-2xl font-bold text-gray-900 dark:text-white">
+MDMY Blog
+</a> <nav> <ul class="flex space-x-6"> <li><a href="/" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white">Home</a></li> <li><a href="/blog" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white">Blog</a></li> <li><a href="/about" class="text-gray-700 hover:text-primary dark:text-gray-300 dark:hover:text-white">About</a></li> </ul> </nav> <button id="theme-toggle" aria-label="Toggle Dark Mode" class="p-2 rounded-full bg-gray-200 dark:bg-gray-800"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path> </svg> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:block" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path> </svg> </button> </div> </header>  <main class="flex-grow container mx-auto px-4 py-8">  <article class="max-w-3xl mx-auto blog-post"> <div class="mb-8"> <div class="flex flex-wrap gap-2 mb-4"> <a href="/tags/astro" class="text-sm bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+#astro </a><a href="/tags/web development" class="text-sm bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+#web development </a><a href="/tags/tutorial" class="text-sm bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+#tutorial </a> </div> <h1 class="text-3xl md:text-4xl font-bold mb-2">Getting Started with Astro: The Modern Static Site Generator</h1> <div class="text-gray-600 dark:text-gray-400 mb-6 flex items-center"> <time datetime="2025-04-15T00:00:00.000Z">Published April 15, 2025</time>  </div> <img src="/images/blog/astro-intro.jpg" alt="Astro.js logo floating in space" class="w-full h-auto rounded-lg shadow-md mb-8"> </div> <div class="prose prose-lg dark:prose-invert max-w-none">  <h1 id="getting-started-with-astro-the-modern-static-site-generator">Getting Started with Astro: The Modern Static Site Generator</h1>
+<p>Astro has rapidly gained popularity among developers as a modern solution for building lightning-fast websites. In this post, we’ll explore what makes Astro special and how to get started with your first Astro project.</p>
+<h2 id="what-is-astro">What is Astro?</h2>
+<p>Astro is a modern static site generator that allows you to build faster websites with less client-side JavaScript. It features:</p>
+<ul>
+<li><strong>Island Architecture</strong>: Load only the JavaScript you need</li>
+<li><strong>Multiple Framework Support</strong>: Use React, Vue, Svelte, or plain HTML in the same project</li>
+<li><strong>Markdown Support</strong>: First-class support for content-driven websites</li>
+<li><strong>Seamless Integrations</strong>: Easy to add features like image optimization and RSS feeds</li>
+</ul>
+<h2 id="setting-up-your-first-astro-project">Setting Up Your First Astro Project</h2>
+<p>Getting started with Astro is straightforward:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#6A737D"># Create a new project with npm</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> create</span><span style="color:#9ECBFF"> astro@latest</span><span style="color:#9ECBFF"> my-astro-site</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Navigate to the new project</span></span>
+<span class="line"><span style="color:#79B8FF">cd</span><span style="color:#9ECBFF"> my-astro-site</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Start the development server</span></span>
+<span class="line"><span style="color:#B392F0">npm</span><span style="color:#9ECBFF"> run</span><span style="color:#9ECBFF"> dev</span></span></code></pre>
+<h2 id="understanding-astro-components">Understanding Astro Components</h2>
+<p>Astro components use a .astro file extension and feature a unique template syntax:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto; white-space: pre-wrap; word-wrap: break-word;" tabindex="0"><code><span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"><span style="color:#6A737D">// Your component's JavaScript or TypeScript code goes here</span></span>
+<span class="line"><span style="color:#F97583">const</span><span style="color:#79B8FF"> greeting</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "Hello, Astro!"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#6A737D">---</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">&#x3C;!-- Your HTML template goes here --></span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">>{greeting}&#x3C;/</span><span style="color:#85E89D">h1</span><span style="color:#E1E4E8">></span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span>
+<span class="line"><span style="color:#6A737D">  /* Component-scoped CSS goes here */</span></span>
+<span class="line"><span style="color:#85E89D">  h1</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    color</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">purple</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">  }</span></span>
+<span class="line"><span style="color:#E1E4E8">&#x3C;/</span><span style="color:#85E89D">style</span><span style="color:#E1E4E8">></span></span></code></pre>
+<h2 id="why-choose-astro">Why Choose Astro?</h2>
+<h3 id="1-performance-first">1. Performance-First</h3>
+<p>Astro generates static HTML at build time, resulting in incredibly fast page loads. JavaScript is only shipped to the browser when necessary, meaning many pages can be completely static.</p>
+<h3 id="2-framework-agnostic">2. Framework-Agnostic</h3>
+<p>Unlike other tools that lock you into a specific framework, Astro allows you to use components from React, Vue, Svelte, and more—all in the same project.</p>
+<h3 id="3-content-focused">3. Content-Focused</h3>
+<p>With built-in support for Markdown, Astro is perfect for content-heavy websites like blogs, documentation sites, and portfolios.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Astro represents a modern approach to building websites that prioritizes performance without sacrificing developer experience. If you’re looking for a tool to build content-focused websites with optimal performance, Astro deserves your attention.</p>
+<p>In our next post, we’ll dive deeper into Astro’s content collections and how they make managing blog posts and other content a breeze.</p>  </div> <div class="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800"> <a href="/blog" class="inline-flex items-center text-primary hover:underline"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path> </svg>
+Back to all posts
+</a> </div> </article>  </main> <footer class="mt-16 py-8 bg-gray-100 dark:bg-gray-900"> <div class="container mx-auto px-4"> <div class="flex flex-col md:flex-row justify-between items-center"> <div> <p class="text-gray-700 dark:text-gray-300">
+&copy; 2025 MDMY Blog. All rights reserved.
+</p> </div> <div class="mt-4 md:mt-0"> <ul class="flex space-x-4"> <li> <a href="/privacy-policy" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+Privacy Policy
+</a> </li> <li> <a href="/terms" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+Terms
+</a> </li> <li> <a href="/rss.xml" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+RSS
+</a> </li> <li> <a href="/sitemap-index.xml" class="text-gray-600 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+Sitemap
+</a> </li> </ul> </div> </div> </div> </footer> </body></html>
