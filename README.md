@@ -97,51 +97,6 @@ npm run preview
 
 The built site will be in the `dist/` directory.
 
-## 🚀 Deployment
-
-### Netlify
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/yourusername/mdmy-blog-astro)
-
-### Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/mdmy-blog-astro)
-
-### Manual Deployment
-
-For GitHub Pages or other hosting options, use the following GitHub Actions workflow:
-
-```yaml
-# .github/workflows/deploy.yml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [ main ]
-  
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - name: Install dependencies
-        run: npm ci
-      - name: Build website
-        run: npm run build
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-```
-
-## 📄 License
-
-MIT License - Feel free to use, modify, and distribute as you wish.
-
 ## 🙏 Acknowledgments
 
 - [Astro](https://astro.build)

@@ -5,7 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yourdomain.com', // Replace with your actual domain
+  site: 'https://mdmygroup.github.io/mdmy-blog-astro/',
   integrations: [
     mdx(),
     sitemap(),
