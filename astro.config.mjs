@@ -5,6 +5,7 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+  base: '/mdmy-blog-astro/',
   site: 'https://mdmygroup.github.io/mdmy-blog-astro/',
   integrations: [
     mdx(),
@@ -18,6 +19,28 @@ export default defineConfig({
       wrap: true
     },
   },
+  output: 'static',
   // Add configuration for content directory
-  contentDir: './content'
+  contentDir: './content',
+
+  // image: {
+  //   optimize: true,
+  // },
+
+  // seo: {
+  //   title: 'My Astro Blog',
+  //   description: 'A blog built with Astro and MDX',
+  // },
+  
+
+  // seoConfig: {
+  //   author: 'Your Name',
+  //   keywords: ['Astro', 'MDX', 'Blog'],
+  // },
+  
+
+  // additionalSeo: {
+  //   robots: 'index, follow',
+  //   ogImage: 'https://example.com/image.png',
+  // },
 });
